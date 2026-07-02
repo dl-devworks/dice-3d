@@ -2,14 +2,13 @@
 
 Dice 3D is a Godot 4.7 addon for modular 3D dice.
 
-For most projects, there are two main nodes:
+There are two main nodes:
 
 - `DiceCinematicRoller3D` - an animation roll box. Use this when your game already knows the result and you want the die to bounce, spin, and settle onto that result in a clean UI-friendly way. It does not use physics.
 - `DiceRollBox3D` - a physics roll box. Use this when you want real dice motion with gravity, collisions, friction, bounce, roll strength, and automatic top-face detection.
 
 Both nodes use `DiceDieDefinition3D` resources. A dice definition describes the die shape, faces, materials, and roll defaults. Create a definition once, then assign it to either roll node.
 
-For the full reference, see [API.md](API.md).
 
 ## Installation
 
@@ -146,3 +145,9 @@ Dice rendering goes through a shape-data layer so face anchors, result alignment
 - `face_decoration_offset` and `face_decoration_scale` control how face visuals sit on the body.
 
 Physics D6 dice still use a simple box collision shape for stable rolling, even when the visible body uses the rounded mesh.
+
+## Aknowledgements
+
+Generative AI was used the the creation of this plugin
+Sound assets were from https://kenney.nl/assets
+Textures were from https://polyhaven.com/
