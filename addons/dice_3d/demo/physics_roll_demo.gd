@@ -19,7 +19,7 @@ const DICE_TYPE_ICON := 1
 const DICE_TYPE_D20 := 2
 const _DICE_TYPES := [DICE_TYPE_NORMAL, DICE_TYPE_ICON, DICE_TYPE_D20]
 const _GRAVITY_OPTIONS := [
-	{"label": "Away", "bottom_side": DiceRollBox3D.BoxSide.NEG_Z},
+	{"label": "Back", "bottom_side": DiceRollBox3D.BoxSide.NEG_Z},
 	{"label": "Toward", "bottom_side": DiceRollBox3D.BoxSide.POS_Z},
 	{"label": "Down", "bottom_side": DiceRollBox3D.BoxSide.NEG_Y},
 	{"label": "Up", "bottom_side": DiceRollBox3D.BoxSide.POS_Y},

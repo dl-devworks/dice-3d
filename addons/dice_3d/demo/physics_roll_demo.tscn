@@ -211,7 +211,7 @@ theme_override_constants/separation = 8
 [node name="GravityButton" type="Button" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/GravityRow"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Gravity: Away"
+text = "Gravity: Back"
 
 [node name="GravityStrengthRow" type="HBoxContainer" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer"]
 layout_mode = 2
