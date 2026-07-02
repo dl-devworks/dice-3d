@@ -4,11 +4,10 @@ Dice 3D is a Godot 4.7 addon for modular 3D dice.
 
 There are two main nodes:
 
-- `DiceCinematicRoller3D` - an animation roll box. Use this when your game already knows the result and you want the die to bounce, spin, and settle onto that result in a clean UI-friendly way. It does not use physics.
+- `DiceCinematicRoller3D` - an animation roll box. Use this when you want the die to bounce, spin, and settle in a clean UI-friendly way. You can pass in a result, or let the roller choose one randomly. It does not use physics.
 - `DiceRollBox3D` - a physics roll box. Use this when you want real dice motion with gravity, collisions, friction, bounce, roll strength, and automatic top-face detection.
 
 Both nodes use `DiceDieDefinition3D` resources. A dice definition describes the die shape, faces, materials, and roll defaults. Create a definition once, then assign it to either roll node.
-
 
 ## Installation
 
@@ -55,7 +54,7 @@ The shipped shapes are D6 and D20. D6 dice can use sharp generated cube bodies o
 
 ## Animation Rolls
 
-Use `DiceCinematicRoller3D` when your game knows the result before the presentation starts. The die is not physically simulated; it stays in a controlled stage, bounces vertically, spins, then settles to the chosen face.
+Use `DiceCinematicRoller3D` when you want a controlled, non-physics roll presentation. You can pass in a chosen result, or call `roll()` without a result and let the roller choose a random face. The die stays in a controlled stage, bounces vertically, spins, then settles to the final face.
 
 ```gdscript
 @onready var roller: DiceCinematicRoller3D = $DiceCinematicRoller3D
@@ -146,8 +145,8 @@ Dice rendering goes through a shape-data layer so face anchors, result alignment
 
 Physics D6 dice still use a simple box collision shape for stable rolling, even when the visible body uses the rounded mesh.
 
-## Aknowledgements
+## Acknowledgements
 
-Generative AI was used the the creation of this plugin
-Sound assets were from https://kenney.nl/assets
-Textures were from https://polyhaven.com/
+Generative AI was used in the creation of this plugin.
+Sound assets are from https://kenney.nl/assets.
+Textures are from https://polyhaven.com/.
