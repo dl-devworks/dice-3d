@@ -103,7 +103,7 @@ When `suspend_gravity_until_inside` is enabled, outside-launched dice do not rec
 
 ## DiceCinematicRoller3D
 
-`DiceCinematicRoller3D` is the non-physics roller. It reuses `DiceDie3D`, `DiceDieDefinition3D`, `DiceFace3D`, and `DiceRollResult`, but dice are frozen and manually animated along a controlled presentation path. Use it for RPG/check flows where gameplay decides the result before the animation starts.
+`DiceCinematicRoller3D` is the non-physics roller. It reuses `DiceDie3D`, `DiceDieDefinition3D`, `DiceFace3D`, and `DiceRollResult`, but dice are frozen and manually animated along a controlled presentation path. Use it for RPG/check flows where you want a predictable roll presentation: gameplay can pass in a chosen result, or the roller can choose a random face when no result is supplied.
 
 Important exports:
 
@@ -169,7 +169,7 @@ Signals:
 
 `requested_result` can be a face value, a face slot such as `DiceDie3D.SLOT_POS_Y`, a `face_id`, a `DiceFace3D`, or a dictionary with `slot`, `face`, `face_id`, or `value`. If it is omitted, the roller chooses a random face. Per-roll `options` can override `duration`, `bounce_height`, `bounce_count`, `spin_turns`, `settle_start`, `start_delay`, and `per_die_delay`.
 
-The cinematic roller always uses a box-shaped presentation stage and a vertical-bounce result reveal. It does not create physics walls or collision; it is a presentation controller. Use `stage_size` to size the debug frame; the die stays over its landing point, bounces straight up and down, spins rapidly, and settles onto the requested face.
+The cinematic roller always uses a box-shaped presentation stage and a vertical-bounce result reveal. It does not create physics walls or collision; it is a presentation controller. Use `stage_size` to size the debug frame; the die stays over its landing point, bounces straight up and down, spins rapidly, and settles onto the final face.
 
 When `align_flat_bottom_on_land` is enabled, D6 dice prioritize landing one face flat against the stage bottom, then twist so the requested result face points toward `result_side` as closely as the shape allows. D20 dice prioritize presenting the requested result face directly toward `result_side`, then use the strongest available twist bias toward a stable-looking bottom. `spin_clearance` is the minimum spacing used for multi-die layout, and `layout_dice()` tweens visible dice into evenly spaced positions so adding or hiding dice can make room cleanly. When `randomize_idle_start_side` is enabled, each layout/reset gives the waiting die a random presented side. When `idle_spin_enabled` is on, visible dice that are not rolling or holding a result slowly rotate around the stage vertical axis while waiting; `randomize_idle_spin_on_layout` refreshes the waiting spin speed and direction each time dice are arranged.
 
