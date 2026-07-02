@@ -143,6 +143,10 @@ By default, a roll starts near the selected `roll_source` and launches toward th
 
 Dice 3D is released under CC0 1.0 Universal. See [LICENSE.md](LICENSE.md).
 
+## Support
+
+Dice 3D is free to use. If it helps your project, donations are welcome on [Ko-fi](https://ko-fi.com/daniellewis56771).
+
 ## Shape And Face Notes
 
 Dice rendering goes through a shape-data layer so face anchors, result alignment, and top-face lookup are not hardcoded to cubes.

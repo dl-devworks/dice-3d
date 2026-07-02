@@ -25,3 +25,7 @@ For the full guide and API notes, see the repository README and API documentatio
 ## License
 
 Dice 3D is released under CC0 1.0 Universal. See `LICENSE.md`.
+
+## Support
+
+Dice 3D is free to use. If it helps your project, donations are welcome on [Ko-fi](https://ko-fi.com/daniellewis56771).
