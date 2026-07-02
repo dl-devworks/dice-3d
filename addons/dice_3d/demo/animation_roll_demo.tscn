@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://bs3tqg616wcw1"]
+
+[ext_resource type="Script" uid="uid://cylcqt5gkp6f5" path="res://addons/dice_3d/demo/animation_roll_demo.gd" id="1_demo"]
+[ext_resource type="Script" uid="uid://c0h3i64860654" path="res://addons/dice_3d/dice_cinematic_roller_3d.gd" id="2_roller"]
+[ext_resource type="Resource" path="res://addons/dice_3d/demo/assets/d20_die_definition.tres" id="3_d20_definition"]
+[ext_resource type="PackedScene" path="res://addons/dice_3d/ui/dice_cinematic_roll_panel.tscn" id="4_panel"]
+[ext_resource type="Resource" uid="uid://dhwyn1k2paddb" path="res://addons/dice_3d/demo/assets/number_die_definition.tres" id="5_number_definition"]
+[ext_resource type="Resource" uid="uid://btw6gedxj8m68" path="res://addons/dice_3d/demo/assets/symbol_die_definition.tres" id="6_symbol_definition"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_panel"]
+size = Vector3(7.4, 4.35, 0.08)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_panel"]
+albedo_color = Color(0.08, 0.1, 0.13, 1)
+metallic_specular = 0.2
+roughness = 0.48
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ground"]
+size = Vector2(22, 12)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ground"]
+albedo_color = Color(0.16, 0.18, 0.18, 1)
+roughness = 0.72
+
+[node name="AnimationRollDemo" type="Node3D" unique_id=1185064740]
+script = ExtResource("1_demo")
+
+[node name="DiceCinematicRoller3D" type="Node3D" parent="." unique_id=906952369]
+script = ExtResource("2_roller")
+dice_spacing = 1.18
+spin_clearance = 1.28
+layout_tween_duration = 0.32
+spawn_dice_from_definitions_on_ready = false
+roll_duration = 2.05
+bounce_height = 2.42
+bounce_count = 4.0
+spin_turns = 14.0
+settle_start = 0.76
+idle_spin_speed_min_degrees = 7.0
+idle_spin_speed_max_degrees = 14.0
+
+[node name="BackPanel" type="MeshInstance3D" parent="." unique_id=1268907000]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.8)
+mesh = SubResource("BoxMesh_panel")
+surface_material_override/0 = SubResource("StandardMaterial3D_panel")
+
+[node name="GroundPlane" type="MeshInstance3D" parent="." unique_id=1135542669]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, -3.1, 4.8)
+mesh = SubResource("PlaneMesh_ground")
+surface_material_override/0 = SubResource("StandardMaterial3D_ground")
+
+[node name="KeyLight" type="DirectionalLight3D" parent="." unique_id=738981384]
+transform = Transform3D(0.7071068, -0.35355324, 0.6123725, 0, 0.86602557, 0.49999976, -0.7071068, -0.35355324, 0.6123725, 6.7924523, 5.9871483, 6.527616)
+light_energy = 1.8
+shadow_enabled = true
+
+[node name="FillLight" type="OmniLight3D" parent="." unique_id=978417260]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6, 2.2, -2.2)
+light_energy = 2.8
+omni_range = 8.0
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=251388643]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, -7)
+current = true
+fov = 42.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=693887059]
+
+[node name="HUD" parent="CanvasLayer" unique_id=687283331 instance=ExtResource("4_panel")]
+custom_minimum_size = Vector2(360, 250)
+offset_left = 24.0
+offset_top = 58.0
+offset_right = 384.0
+offset_bottom = 308.0
+roller_path = NodePath("../../DiceCinematicRoller3D")
+normal_die_definition = ExtResource("5_number_definition")
+icon_die_definition = ExtResource("6_symbol_definition")
+d20_die_definition = ExtResource("3_d20_definition")
+max_dice = 9
+normal_dice_count = 1
+icon_dice_count = 1
+d20_dice_count = 1
+
+[node name="ShowcaseLabel" type="Label" parent="CanvasLayer" unique_id=1801116244]
+offset_left = 26.0
+offset_top = 20.0
+offset_right = 214.0
+offset_bottom = 46.0
+theme_override_font_sizes/font_size = 19
+text = "Animation Roll"

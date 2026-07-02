@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="DiceDieDefinition3D" format=3]
+
+[ext_resource type="Script" uid="uid://cyphc5yo67p51" path="res://addons/dice_3d/dice_die_definition_3d.gd" id="1_definition"]
+[ext_resource type="Material" path="res://addons/dice_3d/assets/materials/painted_plaster_number_die.tres" id="2_material"]
+
+[resource]
+script = ExtResource("1_definition")
+display_name = "D20Die"
+die_shape = 1
+edge_length = 1.05
+body_shape = 0
+body_material = ExtResource("2_material")
+body_color = Color(0.94, 0.93, 0.88, 1)
+body_roughness = 0.34
+body_specular = 0.48
+body_clearcoat = 0.2
+body_clearcoat_roughness = 0.24
+face_decoration_scale = 0.52

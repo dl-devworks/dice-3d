@@ -1,0 +1,68 @@
+[gd_resource type="Resource" script_class="DiceDieDefinition3D" format=3 uid="uid://btw6gedxj8m68"]
+
+[ext_resource type="Material" uid="uid://h125axn130g1" path="res://addons/dice_3d/assets/materials/rust_coarse_die.tres" id="1_nnyp0"]
+[ext_resource type="Script" uid="uid://cs6x74cmwg0hj" path="res://addons/dice_3d/dice_face_3d.gd" id="2_vcqdp"]
+[ext_resource type="Texture2D" uid="uid://dw7wmq271yftk" path="res://addons/dice_3d/demo/assets/faces/symbol_attack.svg" id="3_5r32n"]
+[ext_resource type="Texture2D" uid="uid://ceasw71uhpt5p" path="res://addons/dice_3d/demo/assets/faces/symbol_blank.svg" id="4_xa4a8"]
+[ext_resource type="Texture2D" uid="uid://ko81xtod6qyr" path="res://addons/dice_3d/demo/assets/faces/symbol_shield.svg" id="5_tch0a"]
+[ext_resource type="Texture2D" uid="uid://f5cuki7wk4lx" path="res://addons/dice_3d/demo/assets/faces/symbol_star.svg" id="6_vw07l"]
+[ext_resource type="Texture2D" uid="uid://cyoycqgnwkuao" path="res://addons/dice_3d/demo/assets/faces/symbol_heal.svg" id="7_kx36v"]
+[ext_resource type="Texture2D" uid="uid://bs0r2k5twtd67" path="res://addons/dice_3d/demo/assets/faces/symbol_coin.svg" id="8_ewvxj"]
+[ext_resource type="Script" uid="uid://cyphc5yo67p51" path="res://addons/dice_3d/dice_die_definition_3d.gd" id="9_oaux5"]
+
+[sub_resource type="Resource" id="Resource_n6emt"]
+script = ExtResource("2_vcqdp")
+value = 1
+face_id = &"attack"
+display_name = "Attack"
+texture = ExtResource("3_5r32n")
+
+[sub_resource type="Resource" id="Resource_lakrt"]
+script = ExtResource("2_vcqdp")
+value = 6
+face_id = &"blank"
+display_name = "Blank"
+texture = ExtResource("4_xa4a8")
+
+[sub_resource type="Resource" id="Resource_j4vve"]
+script = ExtResource("2_vcqdp")
+value = 2
+face_id = &"shield"
+display_name = "Shield"
+texture = ExtResource("5_tch0a")
+
+[sub_resource type="Resource" id="Resource_qt7qo"]
+script = ExtResource("2_vcqdp")
+value = 5
+face_id = &"star"
+display_name = "Star"
+texture = ExtResource("6_vw07l")
+
+[sub_resource type="Resource" id="Resource_spd8h"]
+script = ExtResource("2_vcqdp")
+value = 3
+face_id = &"heal"
+display_name = "Heal"
+texture = ExtResource("7_kx36v")
+
+[sub_resource type="Resource" id="Resource_g384f"]
+script = ExtResource("2_vcqdp")
+value = 4
+face_id = &"coin"
+display_name = "Coin"
+texture = ExtResource("8_ewvxj")
+
+[resource]
+script = ExtResource("9_oaux5")
+display_name = "SymbolDie"
+edge_length = 0.85
+body_material = ExtResource("1_nnyp0")
+body_color = Color(1, 0.97, 0.9, 1)
+body_roughness = 0.3
+body_specular = 0.52
+body_clearcoat = 0.32
+body_clearcoat_roughness = 0.16
+side_smoothing = 0.02
+roll_torque_min = 12.0
+face_decoration_scale = 0.76
+faces = Array[ExtResource("2_vcqdp")]([SubResource("Resource_n6emt"), SubResource("Resource_lakrt"), SubResource("Resource_j4vve"), SubResource("Resource_qt7qo"), SubResource("Resource_spd8h"), SubResource("Resource_g384f")])

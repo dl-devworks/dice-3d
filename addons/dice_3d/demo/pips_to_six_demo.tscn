@@ -1,0 +1,262 @@
+[gd_scene format=3 uid="uid://hbr3lrwoqe7a"]
+
+[ext_resource type="Script" path="res://addons/dice_3d/demo/pips_to_six_demo.gd" id="1_demo"]
+[ext_resource type="Script" uid="uid://c0h3i64860654" path="res://addons/dice_3d/dice_cinematic_roller_3d.gd" id="2_roller"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_back_panel"]
+size = Vector3(7.8, 4.25, 0.08)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_back_panel"]
+albedo_color = Color(0.075, 0.065, 0.105, 1)
+metallic_specular = 0.28
+roughness = 0.44
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_table"]
+size = Vector2(20, 11)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_table"]
+albedo_color = Color(0.18, 0.13, 0.1, 1)
+roughness = 0.68
+
+[sub_resource type="BoxMesh" id="BoxMesh_score_riser"]
+size = Vector3(5.8, 0.12, 1.15)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_score_riser"]
+albedo_color = Color(0.1, 0.09, 0.12, 1)
+roughness = 0.5
+
+[node name="PipsToSixDemo" type="Node3D" unique_id=397695348]
+script = ExtResource("1_demo")
+
+[node name="DiceCinematicRoller3D" type="Node3D" parent="." unique_id=1381189715]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42, 0.48, 0)
+script = ExtResource("2_roller")
+stage_size = Vector3(6.2, 3.35, 1.5)
+dice_spacing = 1.01
+spin_clearance = 1.05
+layout_tween_duration = 0.28
+spawn_dice_from_definitions_on_ready = false
+roll_duration = 1.5
+bounce_height = 1.45
+bounce_count = 4.0
+spin_turns = 12.0
+settle_start = 0.76
+idle_spin_speed_min_degrees = 5.0
+idle_spin_speed_max_degrees = 10.0
+
+[node name="BackPanel" type="MeshInstance3D" parent="." unique_id=642173486]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42, 0.53, 0.88)
+mesh = SubResource("BoxMesh_back_panel")
+surface_material_override/0 = SubResource("StandardMaterial3D_back_panel")
+
+[node name="TablePlane" type="MeshInstance3D" parent="." unique_id=1323544081]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, -3.18, 4.65)
+mesh = SubResource("PlaneMesh_table")
+surface_material_override/0 = SubResource("StandardMaterial3D_table")
+
+[node name="ScoreRiser" type="MeshInstance3D" parent="." unique_id=1150750058]
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, -1.9, -0.55)
+mesh = SubResource("BoxMesh_score_riser")
+surface_material_override/0 = SubResource("StandardMaterial3D_score_riser")
+
+[node name="KeyLight" type="DirectionalLight3D" parent="." unique_id=787430591]
+transform = Transform3D(0.766044, -0.321394, 0.55667, 0, 0.866026, 0.5, -0.642788, -0.383022, 0.663414, 5.8, 6.3, 5.6)
+light_energy = 1.9
+shadow_enabled = true
+
+[node name="FillLight" type="OmniLight3D" parent="." unique_id=362786219]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9, 2.5, -2.3)
+light_energy = 2.2
+omni_range = 8.0
+
+[node name="WarmLight" type="OmniLight3D" parent="." unique_id=1249443398]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8, 1.6, -1.9)
+light_color = Color(1, 0.78, 0.48, 1)
+light_energy = 1.3
+omni_range = 6.0
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1720550425]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, -7.2)
+current = true
+fov = 43.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=540401192]
+
+[node name="AppRoot" type="Control" parent="CanvasLayer" unique_id=914475436]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MoneyPanel" type="PanelContainer" parent="CanvasLayer/AppRoot"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 18.0
+offset_right = 224.0
+offset_bottom = 104.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/AppRoot/MoneyPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/AppRoot/MoneyPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="MoneyTitleLabel" type="Label" parent="CanvasLayer/AppRoot/MoneyPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Money"
+
+[node name="MoneyLabel" type="Label" parent="CanvasLayer/AppRoot/MoneyPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "$0"
+
+[node name="StatusLabel" type="Label" parent="CanvasLayer/AppRoot/MoneyPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Roll to earn money."
+
+[node name="ScorePanel" type="PanelContainer" parent="CanvasLayer/AppRoot" unique_id=1950209744]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -278.0
+offset_top = -174.0
+offset_right = -18.0
+offset_bottom = 174.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/AppRoot/ScorePanel" unique_id=672523938]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 14
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/AppRoot/ScorePanel/MarginContainer" unique_id=1172000901]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ScoreTitleLabel" type="Label" parent="CanvasLayer/AppRoot/ScorePanel/MarginContainer/VBoxContainer" unique_id=2129504093]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Upgrade Shop"
+
+[node name="TotalLabel" type="Label" parent="CanvasLayer/AppRoot/ScorePanel/MarginContainer/VBoxContainer" unique_id=1907486046]
+layout_mode = 2
+text = "Roll first."
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/AppRoot/ScorePanel/MarginContainer/VBoxContainer" unique_id=40900331]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScoreList" type="VBoxContainer" parent="CanvasLayer/AppRoot/ScorePanel/MarginContainer/VBoxContainer/MarginContainer" unique_id=1483948725]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 5
+
+[node name="PlayPanel" type="PanelContainer" parent="CanvasLayer/AppRoot" unique_id=1876218476]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -350.0
+offset_top = -110.0
+offset_right = 350.0
+offset_bottom = -18.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/AppRoot/PlayPanel" unique_id=1618316992]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/AppRoot/PlayPanel/MarginContainer" unique_id=1955421424]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ActionColumn" type="VBoxContainer" parent="CanvasLayer/AppRoot/PlayPanel/MarginContainer/HBoxContainer" unique_id=445357154]
+custom_minimum_size = Vector2(112, 0)
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="RoundLabel" type="Label" parent="CanvasLayer/AppRoot/PlayPanel/MarginContainer/HBoxContainer/ActionColumn" unique_id=414822015]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Rolls: 0
+Goal: all 6s"
+
+[node name="DiceColumn" type="VBoxContainer" parent="CanvasLayer/AppRoot/PlayPanel/MarginContainer/HBoxContainer" unique_id=1209221609]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="DiceButtonRow" type="HBoxContainer" parent="CanvasLayer/AppRoot/PlayPanel/MarginContainer/HBoxContainer/DiceColumn" unique_id=777996381]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="RollButton" type="Button" parent="CanvasLayer/AppRoot/PlayPanel/MarginContainer/HBoxContainer" unique_id=1801998180]
+custom_minimum_size = Vector2(132, 62)
+layout_mode = 2
+text = "Roll Dice"
+
+[node name="UpgradePanel" type="PanelContainer" parent="CanvasLayer/AppRoot" unique_id=1286709058]
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -282.0
+offset_top = -186.0
+offset_right = 282.0
+offset_bottom = 186.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/AppRoot/UpgradePanel" unique_id=255226374]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/AppRoot/UpgradePanel/MarginContainer" unique_id=1674718566]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HeaderRow" type="HBoxContainer" parent="CanvasLayer/AppRoot/UpgradePanel/MarginContainer/VBoxContainer" unique_id=762627163]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="UpgradeTitleLabel" type="Label" parent="CanvasLayer/AppRoot/UpgradePanel/MarginContainer/VBoxContainer/HeaderRow" unique_id=1364844916]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "Upgrade Die"
+
+[node name="UpgradeExitButton" type="Button" parent="CanvasLayer/AppRoot/UpgradePanel/MarginContainer/VBoxContainer/HeaderRow" unique_id=642495568]
+custom_minimum_size = Vector2(74, 34)
+layout_mode = 2
+text = "Exit"
+
+[node name="SelectedDieLabel" type="Label" parent="CanvasLayer/AppRoot/UpgradePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Open a die from the bottom controls."
+
+[node name="FaceGrid" type="GridContainer" parent="CanvasLayer/AppRoot/UpgradePanel/MarginContainer/VBoxContainer" unique_id=1788837309]
+custom_minimum_size = Vector2(456, 180)
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 3

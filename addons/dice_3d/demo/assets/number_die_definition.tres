@@ -1,0 +1,66 @@
+[gd_resource type="Resource" script_class="DiceDieDefinition3D" format=3 uid="uid://dhwyn1k2paddb"]
+
+[ext_resource type="Material" path="res://addons/dice_3d/assets/materials/painted_plaster_number_die.tres" id="1_tavqj"]
+[ext_resource type="Script" uid="uid://cs6x74cmwg0hj" path="res://addons/dice_3d/dice_face_3d.gd" id="2_m20gx"]
+[ext_resource type="Texture2D" uid="uid://dvl4od72foygi" path="res://addons/dice_3d/demo/assets/faces/number_1.svg" id="3_0i3my"]
+[ext_resource type="Texture2D" uid="uid://co4s06hedd01b" path="res://addons/dice_3d/demo/assets/faces/number_6.svg" id="4_oa2pq"]
+[ext_resource type="Texture2D" uid="uid://dexhvdoxyilqj" path="res://addons/dice_3d/demo/assets/faces/number_2.svg" id="5_6kroi"]
+[ext_resource type="Texture2D" uid="uid://dfp8ql6li6qpe" path="res://addons/dice_3d/demo/assets/faces/number_5.svg" id="6_5lui7"]
+[ext_resource type="Texture2D" uid="uid://d4jju81p4vg12" path="res://addons/dice_3d/demo/assets/faces/number_3.svg" id="7_2ioto"]
+[ext_resource type="Texture2D" uid="uid://c0tslauab43mv" path="res://addons/dice_3d/demo/assets/faces/number_4.svg" id="8_dkfnw"]
+[ext_resource type="Script" uid="uid://cyphc5yo67p51" path="res://addons/dice_3d/dice_die_definition_3d.gd" id="9_vf78s"]
+
+[sub_resource type="Resource" id="Resource_r46ly"]
+script = ExtResource("2_m20gx")
+value = 1
+face_id = &"one"
+display_name = "One"
+texture = ExtResource("3_0i3my")
+
+[sub_resource type="Resource" id="Resource_edsn6"]
+script = ExtResource("2_m20gx")
+value = 6
+face_id = &"six"
+display_name = "Six"
+texture = ExtResource("4_oa2pq")
+
+[sub_resource type="Resource" id="Resource_0bp11"]
+script = ExtResource("2_m20gx")
+value = 2
+face_id = &"two"
+display_name = "Two"
+texture = ExtResource("5_6kroi")
+
+[sub_resource type="Resource" id="Resource_dl3bf"]
+script = ExtResource("2_m20gx")
+value = 5
+face_id = &"five"
+display_name = "Five"
+texture = ExtResource("6_5lui7")
+
+[sub_resource type="Resource" id="Resource_slf52"]
+script = ExtResource("2_m20gx")
+value = 3
+face_id = &"three"
+display_name = "Three"
+texture = ExtResource("7_2ioto")
+
+[sub_resource type="Resource" id="Resource_ajjnl"]
+script = ExtResource("2_m20gx")
+value = 4
+face_id = &"four"
+display_name = "Four"
+texture = ExtResource("8_dkfnw")
+
+[resource]
+script = ExtResource("9_vf78s")
+display_name = "NumberDie"
+edge_length = 0.85
+body_material = ExtResource("1_tavqj")
+body_color = Color(0.94, 0.93, 0.88, 1)
+body_roughness = 0.34
+body_specular = 0.48
+body_clearcoat = 0.28
+body_clearcoat_roughness = 0.18
+side_smoothing = 0.02
+faces = Array[ExtResource("2_m20gx")]([SubResource("Resource_r46ly"), SubResource("Resource_edsn6"), SubResource("Resource_0bp11"), SubResource("Resource_dl3bf"), SubResource("Resource_slf52"), SubResource("Resource_ajjnl")])
