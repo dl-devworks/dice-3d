@@ -51,6 +51,7 @@ const _GRAVITY_OPTIONS := [
 
 var _dice: Array[DiceDie3D] = []
 var _typed_dice: Dictionary = {}
+var _definition_sources: Dictionary = {}
 var _normal_dice_count := 1
 var _icon_dice_count := 1
 var _d20_dice_count := 1
@@ -68,6 +69,7 @@ func _ready() -> void:
 	randomize()
 	_setup_sky()
 	_initialize_camera_control()
+	_initialize_definition_sources()
 	_configure_roll_box()
 	_connect_ui()
 	_sync_dice_counts()
@@ -112,6 +114,23 @@ func _setup_sky() -> void:
 func _initialize_camera_control() -> void:
 	_camera_pitch = _camera.rotation.x
 	_camera_yaw = _camera.rotation.y
+
+
+func _initialize_definition_sources() -> void:
+	var scene_definitions := _roll_box.get_die_definitions()
+	for index in range(_DICE_TYPES.size()):
+		var type: int = _DICE_TYPES[index]
+		var definition: DiceDieDefinition3D = null
+		if index < scene_definitions.size():
+			definition = scene_definitions[index]
+		if definition == null:
+			definition = _get_fallback_definition_for_type(type)
+			_roll_box.add_die_definition(definition)
+		_definition_sources[type] = definition
+
+	_normal_dice_count = _get_definition_start_count(DICE_TYPE_NORMAL, MAX_DICE)
+	_icon_dice_count = _get_definition_start_count(DICE_TYPE_ICON, MAX_DICE - _normal_dice_count)
+	_d20_dice_count = _get_definition_start_count(DICE_TYPE_D20, MAX_DICE - _normal_dice_count - _icon_dice_count)
 
 
 func _update_camera_movement(delta: float) -> void:
@@ -446,6 +465,12 @@ func _get_total_dice_count() -> int:
 
 
 func _get_definition_for_type(type: int) -> DiceDieDefinition3D:
+	if _definition_sources.has(type):
+		return _definition_sources[type] as DiceDieDefinition3D
+	return _get_fallback_definition_for_type(type)
+
+
+func _get_fallback_definition_for_type(type: int) -> DiceDieDefinition3D:
 	match type:
 		DICE_TYPE_NORMAL:
 			return NUMBER_DIE_DEFINITION
@@ -454,6 +479,13 @@ func _get_definition_for_type(type: int) -> DiceDieDefinition3D:
 		DICE_TYPE_D20:
 			return D20_DIE_DEFINITION
 	return NUMBER_DIE_DEFINITION
+
+
+func _get_definition_start_count(type: int, available: int) -> int:
+	var definition := _get_definition_for_type(type)
+	if definition == null or available <= 0:
+		return 0
+	return clampi(definition.count, 0, available)
 
 
 func _get_type_display_name(type: int) -> String:

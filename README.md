@@ -16,7 +16,7 @@ Copy `addons/dice_3d` into a Godot 4.7 project, then enable **Dice 3D** from **P
 ## Included Demos
 
 - `res://addons/dice_3d/demo/animation_roll_demo.tscn` - a clean UI demo using `DiceCinematicRollPanel` and `DiceCinematicRoller3D`.
-- `res://addons/dice_3d/demo/physics_roll_demo.tscn` - a UI-driven physics demo with a wide/tall roll box, movable camera, gravity direction, gravity strength, roll strength, and dice type controls.
+- `res://addons/dice_3d/demo/physics_roll_demo.tscn` - a UI-driven physics demo with a wide/tall roll box, movable camera, inspector-authored dice definitions, gravity direction, gravity strength, roll strength, and dice type controls.
 - `res://addons/dice_3d/demo/pips_to_six_demo.tscn` - a fullscreen dice-upgrade game where rolls earn money, shop upgrades are dragged onto die faces, and the goal is to roll all sixes.
 - `res://addons/dice_3d/demo/dice_definitions_example.gd` - a compact code example showing how to build dice definitions for normal dice, icon dice, and D20s.
 

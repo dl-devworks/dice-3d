@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="Script" path="res://addons/dice_3d/demo/physics_roll_demo.gd" id="1_demo"]
 [ext_resource type="Script" path="res://addons/dice_3d/dice_roll_box_3d.gd" id="2_box"]
+[ext_resource type="Resource" uid="uid://dhwyn1k2paddb" path="res://addons/dice_3d/demo/assets/number_die_definition.tres" id="3_number_definition"]
+[ext_resource type="Resource" uid="uid://btw6gedxj8m68" path="res://addons/dice_3d/demo/assets/symbol_die_definition.tres" id="4_symbol_definition"]
+[ext_resource type="Resource" path="res://addons/dice_3d/demo/assets/d20_die_definition.tres" id="5_d20_definition"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_lower_shelf"]
 size = Vector3(13.2, 0.08, 6.2)
@@ -62,6 +65,7 @@ dice_bounce = 0.1
 debug_visible = true
 spawn_padding = 0.18
 spawn_dice_from_definitions_on_ready = false
+dice_definitions = Array[Resource]([ExtResource("3_number_definition"), ExtResource("4_symbol_definition"), ExtResource("5_d20_definition")])
 default_roll_impulse_min = 7.5
 default_roll_impulse_max = 11.5
 default_initial_spin_min = 12.0
