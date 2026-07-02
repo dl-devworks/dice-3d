@@ -22,6 +22,12 @@ Copy `addons/dice_3d` into a Godot 4.7 project, then enable **Dice 3D** from **P
 
 The UI demos keep interface controls in the UI layer. The dice themselves remain 3D nodes, either in the main 3D scene or inside a `SubViewportContainer` when the UI needs to frame the 3D view.
 
+## Screenshots
+
+![Physics Roll demo](screenshots/physics_roll_demo.png)
+
+![Pips to Six demo](screenshots/pips_to_six_demo.png)
+
 ## Dice Definitions
 
 `DiceDieDefinition3D` is the main setup resource. It describes the die shape, body style, material/color settings, roll defaults, and face resources.
@@ -133,6 +139,10 @@ By default, a roll starts near the selected `roll_source` and launches toward th
 
 `bottom_side` controls the box's gravity direction. `gravity_strength` controls how strong that gravity is.
 
+## License
+
+Dice 3D is released under CC0 1.0 Universal. See [LICENSE.md](LICENSE.md).
+
 ## Shape And Face Notes
 
 Dice rendering goes through a shape-data layer so face anchors, result alignment, and top-face lookup are not hardcoded to cubes.
@@ -148,5 +158,5 @@ Physics D6 dice still use a simple box collision shape for stable rolling, even 
 ## Acknowledgements
 
 Generative AI was used in the creation of this plugin.
-Sound assets are from https://kenney.nl/assets.
-Textures are from https://polyhaven.com/.
+Sound assets are from [Kenney](https://kenney.nl/assets) and are CC0/public domain.
+Textures are from [Poly Haven](https://polyhaven.com/) and are CC0.
