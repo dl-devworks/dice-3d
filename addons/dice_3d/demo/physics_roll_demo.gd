@@ -9,6 +9,11 @@ const BASE_ROLL_IMPULSE_MIN := 7.5
 const BASE_ROLL_IMPULSE_MAX := 11.5
 const BASE_INITIAL_SPIN_MIN := 12.0
 const BASE_INITIAL_SPIN_MAX := 20.0
+const CAMERA_MOVE_SPEED := 7.5
+const CAMERA_MOUSE_SENSITIVITY := 0.006
+const CAMERA_ZOOM_STEP := 1.1
+const CAMERA_MIN_PITCH := -1.22
+const CAMERA_MAX_PITCH := 1.22
 const DICE_TYPE_NORMAL := 0
 const DICE_TYPE_ICON := 1
 const DICE_TYPE_D20 := 2
@@ -24,6 +29,8 @@ const _GRAVITY_OPTIONS := [
 
 @onready var _stage_world: Node3D = $CanvasLayer/AppRoot/StageViewport/SubViewport/StageWorld
 @onready var _roll_box: DiceRollBox3D = $CanvasLayer/AppRoot/StageViewport/SubViewport/StageWorld/DiceRollBox3D
+@onready var _camera: Camera3D = $CanvasLayer/AppRoot/StageViewport/SubViewport/StageWorld/Camera3D
+@onready var _controls_panel: Control = $CanvasLayer/AppRoot/Controls
 @onready var _normal_minus_button: Button = $CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows/NormalRow/MinusButton
 @onready var _normal_count_label: Label = $CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows/NormalRow/CountLabel
 @onready var _normal_plus_button: Button = $CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows/NormalRow/PlusButton
@@ -51,15 +58,33 @@ var _rolling := false
 var _roll_count := 0
 var _settled_count := 0
 var _gravity_option_index := 0
+var _camera_dragging := false
+var _camera_pitch := 0.0
+var _camera_yaw := 0.0
+var _camera_keys := {}
 
 
 func _ready() -> void:
 	randomize()
 	_setup_sky()
+	_initialize_camera_control()
 	_configure_roll_box()
 	_connect_ui()
 	_sync_dice_counts()
 	_update_ui()
+
+
+func _process(delta: float) -> void:
+	_update_camera_movement(delta)
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		_handle_camera_key(event)
+	elif event is InputEventMouseButton:
+		_handle_camera_mouse_button(event)
+	elif event is InputEventMouseMotion:
+		_handle_camera_mouse_motion(event)
 
 
 func _setup_sky() -> void:
@@ -82,6 +107,85 @@ func _setup_sky() -> void:
 	world_environment.name = "SkyEnvironment"
 	world_environment.environment = environment
 	_stage_world.add_child(world_environment)
+
+
+func _initialize_camera_control() -> void:
+	_camera_pitch = _camera.rotation.x
+	_camera_yaw = _camera.rotation.y
+
+
+func _update_camera_movement(delta: float) -> void:
+	var movement := Vector3.ZERO
+	var camera_basis := _camera.global_transform.basis
+	if _is_camera_key_pressed(KEY_W):
+		movement -= camera_basis.z
+	if _is_camera_key_pressed(KEY_S):
+		movement += camera_basis.z
+	if _is_camera_key_pressed(KEY_A):
+		movement -= camera_basis.x
+	if _is_camera_key_pressed(KEY_D):
+		movement += camera_basis.x
+
+	if movement.length_squared() <= 0.0:
+		return
+	_camera.global_position += movement.normalized() * CAMERA_MOVE_SPEED * delta
+
+
+func _handle_camera_key(event: InputEventKey) -> void:
+	var keycode := event.physical_keycode
+	if keycode == 0:
+		keycode = event.keycode
+	if not _is_camera_key(keycode):
+		return
+	if event.pressed:
+		_camera_keys[keycode] = true
+	else:
+		_camera_keys.erase(keycode)
+	get_viewport().set_input_as_handled()
+
+
+func _handle_camera_mouse_button(event: InputEventMouseButton) -> void:
+	if event.button_index == MOUSE_BUTTON_MIDDLE:
+		if event.pressed and _is_pointer_over_controls(event.position):
+			return
+		_camera_dragging = event.pressed
+		get_viewport().set_input_as_handled()
+		return
+
+	if not event.pressed or _is_pointer_over_controls(event.position):
+		return
+	if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+		_zoom_camera(1.0)
+		get_viewport().set_input_as_handled()
+	elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+		_zoom_camera(-1.0)
+		get_viewport().set_input_as_handled()
+
+
+func _handle_camera_mouse_motion(event: InputEventMouseMotion) -> void:
+	if not _camera_dragging:
+		return
+	_camera_yaw -= event.relative.x * CAMERA_MOUSE_SENSITIVITY
+	_camera_pitch = clampf(_camera_pitch - event.relative.y * CAMERA_MOUSE_SENSITIVITY, CAMERA_MIN_PITCH, CAMERA_MAX_PITCH)
+	_camera.rotation = Vector3(_camera_pitch, _camera_yaw, 0.0)
+	get_viewport().set_input_as_handled()
+
+
+func _zoom_camera(direction: float) -> void:
+	var forward := -_camera.global_transform.basis.z.normalized()
+	_camera.global_position += forward * CAMERA_ZOOM_STEP * direction
+
+
+func _is_camera_key(keycode: int) -> bool:
+	return keycode == KEY_W or keycode == KEY_A or keycode == KEY_S or keycode == KEY_D
+
+
+func _is_camera_key_pressed(keycode: int) -> bool:
+	return _camera_keys.has(keycode)
+
+
+func _is_pointer_over_controls(position: Vector2) -> bool:
+	return _controls_panel.get_global_rect().has_point(position)
 
 
 func _configure_roll_box() -> void:

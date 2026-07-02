@@ -1,15 +1,7 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://addons/dice_3d/demo/physics_roll_demo.gd" id="1_demo"]
 [ext_resource type="Script" path="res://addons/dice_3d/dice_roll_box_3d.gd" id="2_box"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_landing_wall"]
-size = Vector3(12.4, 6.8, 0.08)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_landing_wall"]
-albedo_color = Color(0.07, 0.085, 0.1, 1)
-metallic_specular = 0.2
-roughness = 0.58
 
 [sub_resource type="BoxMesh" id="BoxMesh_lower_shelf"]
 size = Vector3(13.2, 0.08, 6.2)
@@ -82,11 +74,6 @@ roll_upward_bias = 0.0
 suspend_gravity_until_inside = false
 reroll_unflat_results = true
 max_unflat_rerolls = 2
-
-[node name="LandingWall" type="MeshInstance3D" parent="CanvasLayer/AppRoot/StageViewport/SubViewport/StageWorld"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.76)
-mesh = SubResource("BoxMesh_landing_wall")
-surface_material_override/0 = SubResource("StandardMaterial3D_landing_wall")
 
 [node name="LowerShelf" type="MeshInstance3D" parent="CanvasLayer/AppRoot/StageViewport/SubViewport/StageWorld"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.08, 0.05)
