@@ -58,7 +58,7 @@ render_target_update_mode = 4
 [node name="DiceRollBox3D" type="Node3D" parent="CanvasLayer/AppRoot/StageViewport/SubViewport/StageWorld"]
 script = ExtResource("2_box")
 size = Vector3(12.8, 7.2, 6.2)
-bottom_side = 3
+bottom_side = 1
 gravity_strength = 11.5
 dice_friction = 0.88
 dice_bounce = 0.1
@@ -80,7 +80,7 @@ reroll_unflat_results = true
 max_unflat_rerolls = 2
 
 [node name="LowerShelf" type="MeshInstance3D" parent="CanvasLayer/AppRoot/StageViewport/SubViewport/StageWorld"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.48, 0.05)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.95, 0.05)
 mesh = SubResource("BoxMesh_lower_shelf")
 surface_material_override/0 = SubResource("StandardMaterial3D_lower_shelf")
 
@@ -215,7 +215,7 @@ theme_override_constants/separation = 8
 [node name="GravityButton" type="Button" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/GravityRow"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Gravity: Back"
+text = "Gravity: Down"
 
 [node name="GravityStrengthRow" type="HBoxContainer" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer"]
 layout_mode = 2

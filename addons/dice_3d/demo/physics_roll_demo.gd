@@ -208,7 +208,7 @@ func _is_pointer_over_controls(position: Vector2) -> bool:
 
 
 func _configure_roll_box() -> void:
-	_gravity_option_index = _get_gravity_option_index(DiceRollBox3D.BoxSide.NEG_Z)
+	_gravity_option_index = _get_gravity_option_index(DiceRollBox3D.BoxSide.NEG_Y)
 	_apply_gravity_option(false)
 	_roll_box.roll_source = DiceRollBox3D.RollSource.CUSTOM_LOCAL
 	_roll_box.custom_roll_source_local = Vector3(1.0, 1.0, 0.0)
