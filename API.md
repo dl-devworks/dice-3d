@@ -1,8 +1,8 @@
 # Dice 3D API
 
-## Animation-First Structure
+## Core Structure
 
-`DiceCinematicRoller3D` is the primary presentation path for the addon. `DiceDieDefinition3D` describes what a die is, `DiceDieShape3D` provides the shape slot/normal/anchor data, and `DiceDie3D` renders the die from that data. `DiceRollBox3D` remains as the physics backend and consumes the same die definitions.
+Dice 3D has two main roll nodes: `DiceCinematicRoller3D` for controlled animation rolls, and `DiceRollBox3D` for physics-based rolls. Both consume the same `DiceDieDefinition3D` resources. `DiceDieDefinition3D` describes what a die is, `DiceDieShape3D` provides the shape slot/normal/anchor data, and `DiceDie3D` renders the die from that data.
 
 The shipped shapes are D6 and D20. The shape-data layer is in place so D8/D10/D12 can be added without rewriting the cinematic result alignment, face anchors, or top-face lookup code.
 
