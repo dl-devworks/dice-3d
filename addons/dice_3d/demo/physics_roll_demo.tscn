@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene format=3 uid="uid://mkuumtcd20nf"]
 
-[ext_resource type="Script" path="res://addons/dice_3d/demo/physics_roll_demo.gd" id="1_demo"]
-[ext_resource type="Script" path="res://addons/dice_3d/dice_roll_box_3d.gd" id="2_box"]
+[ext_resource type="Script" uid="uid://b1k5l8tg24rmd" path="res://addons/dice_3d/demo/physics_roll_demo.gd" id="1_demo"]
+[ext_resource type="Script" uid="uid://diswq1qxeffg" path="res://addons/dice_3d/dice_roll_box_3d.gd" id="2_box"]
 [ext_resource type="Resource" uid="uid://dhwyn1k2paddb" path="res://addons/dice_3d/demo/assets/number_die_definition.tres" id="3_number_definition"]
+[ext_resource type="Script" uid="uid://cyphc5yo67p51" path="res://addons/dice_3d/dice_die_definition_3d.gd" id="3_qx6bt"]
 [ext_resource type="Resource" uid="uid://btw6gedxj8m68" path="res://addons/dice_3d/demo/assets/symbol_die_definition.tres" id="4_symbol_definition"]
 [ext_resource type="Resource" path="res://addons/dice_3d/demo/assets/d20_die_definition.tres" id="5_d20_definition"]
 
@@ -25,12 +26,12 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[node name="PhysicsRollDemo" type="Node"]
+[node name="PhysicsRollDemo" type="Node" unique_id=1072579674]
 script = ExtResource("1_demo")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=217562645]
 
-[node name="AppRoot" type="Control" parent="CanvasLayer"]
+[node name="AppRoot" type="Control" parent="CanvasLayer" unique_id=1901581694]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,7 +39,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StageViewport" type="SubViewportContainer" parent="CanvasLayer/AppRoot"]
+[node name="StageViewport" type="SubViewportContainer" parent="CanvasLayer/AppRoot" unique_id=30567894]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,24 +49,23 @@ grow_vertical = 2
 mouse_filter = 2
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer/AppRoot/StageViewport"]
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/AppRoot/StageViewport" unique_id=2029056391]
 handle_input_locally = false
-size = Vector2i(1280, 720)
+size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="StageWorld" type="Node3D" parent="CanvasLayer/AppRoot/StageViewport/SubViewport"]
+[node name="StageWorld" type="Node3D" parent="CanvasLayer/AppRoot/StageViewport/SubViewport" unique_id=1451686280]
 
-[node name="DiceRollBox3D" type="Node3D" parent="CanvasLayer/AppRoot/StageViewport/SubViewport/StageWorld"]
+[node name="DiceRollBox3D" type="Node3D" parent="CanvasLayer/AppRoot/StageViewport/SubViewport/StageWorld" unique_id=350019008]
 script = ExtResource("2_box")
 size = Vector3(12.8, 7.2, 6.2)
-bottom_side = 1
 gravity_strength = 11.5
 dice_friction = 0.88
 dice_bounce = 0.1
 debug_visible = true
 spawn_padding = 0.18
 spawn_dice_from_definitions_on_ready = false
-dice_definitions = Array[Resource]([ExtResource("3_number_definition"), ExtResource("4_symbol_definition"), ExtResource("5_d20_definition")])
+dice_definitions = Array[ExtResource("3_qx6bt")]([ExtResource("3_number_definition"), ExtResource("4_symbol_definition"), ExtResource("5_d20_definition")])
 default_roll_impulse_min = 7.5
 default_roll_impulse_max = 11.5
 default_initial_spin_min = 12.0
@@ -79,155 +79,156 @@ suspend_gravity_until_inside = false
 reroll_unflat_results = true
 max_unflat_rerolls = 2
 
-[node name="LowerShelf" type="MeshInstance3D" parent="CanvasLayer/AppRoot/StageViewport/SubViewport/StageWorld"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.95, 0.05)
+[node name="LowerShelf" type="MeshInstance3D" parent="CanvasLayer/AppRoot/StageViewport/SubViewport/StageWorld" unique_id=1025322928]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6346037, 0.05)
 mesh = SubResource("BoxMesh_lower_shelf")
 surface_material_override/0 = SubResource("StandardMaterial3D_lower_shelf")
 
-[node name="KeyLight" type="DirectionalLight3D" parent="CanvasLayer/AppRoot/StageViewport/SubViewport/StageWorld"]
+[node name="KeyLight" type="DirectionalLight3D" parent="CanvasLayer/AppRoot/StageViewport/SubViewport/StageWorld" unique_id=294820282]
 transform = Transform3D(0.819152, -0.286788, 0.496732, 0, 0.866025, 0.5, -0.573576, -0.409576, 0.709406, 0, 0, 0)
 light_energy = 1.6
 shadow_enabled = true
 
-[node name="FillLight" type="OmniLight3D" parent="CanvasLayer/AppRoot/StageViewport/SubViewport/StageWorld"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8, 2.1, 4.0)
+[node name="FillLight" type="OmniLight3D" parent="CanvasLayer/AppRoot/StageViewport/SubViewport/StageWorld" unique_id=1414322543]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8, 2.1, 4)
 light_energy = 2.8
 omni_range = 9.0
 
-[node name="Camera3D" type="Camera3D" parent="CanvasLayer/AppRoot/StageViewport/SubViewport/StageWorld"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 12.0)
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/AppRoot/StageViewport/SubViewport/StageWorld" unique_id=582367112]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 12)
 current = true
 fov = 52.0
 
-[node name="Controls" type="PanelContainer" parent="CanvasLayer/AppRoot"]
+[node name="Controls" type="PanelContainer" parent="CanvasLayer/AppRoot" unique_id=1117336560]
 custom_minimum_size = Vector2(360, 392)
+layout_mode = 0
 offset_left = 24.0
 offset_top = 24.0
 offset_right = 384.0
 offset_bottom = 416.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_controls")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/AppRoot/Controls"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/AppRoot/Controls" unique_id=1541633991]
 layout_mode = 2
 theme_override_constants/margin_left = 14
 theme_override_constants/margin_top = 14
 theme_override_constants/margin_right = 14
 theme_override_constants/margin_bottom = 14
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/AppRoot/Controls/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/AppRoot/Controls/MarginContainer" unique_id=1190363072]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="TitleLabel" type="Label" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer" unique_id=886081695]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "Physics Roll"
 
-[node name="DiceTypeRows" type="VBoxContainer" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer"]
+[node name="DiceTypeRows" type="VBoxContainer" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer" unique_id=2128771536]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="NormalRow" type="HBoxContainer" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows"]
+[node name="NormalRow" type="HBoxContainer" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows" unique_id=666442897]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="NameLabel" type="Label" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows/NormalRow"]
+[node name="NameLabel" type="Label" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows/NormalRow" unique_id=224628727]
 custom_minimum_size = Vector2(72, 0)
 layout_mode = 2
 text = "Normal"
 vertical_alignment = 1
 
-[node name="MinusButton" type="Button" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows/NormalRow"]
+[node name="MinusButton" type="Button" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows/NormalRow" unique_id=953926397]
 custom_minimum_size = Vector2(34, 30)
 layout_mode = 2
 text = "-"
 
-[node name="CountLabel" type="Label" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows/NormalRow"]
+[node name="CountLabel" type="Label" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows/NormalRow" unique_id=1904611903]
 custom_minimum_size = Vector2(34, 0)
 layout_mode = 2
+text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
-text = "1"
 
-[node name="PlusButton" type="Button" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows/NormalRow"]
+[node name="PlusButton" type="Button" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows/NormalRow" unique_id=2124177507]
 custom_minimum_size = Vector2(34, 30)
 layout_mode = 2
 text = "+"
 
-[node name="IconRow" type="HBoxContainer" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows"]
+[node name="IconRow" type="HBoxContainer" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows" unique_id=1241446283]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="NameLabel" type="Label" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows/IconRow"]
+[node name="NameLabel" type="Label" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows/IconRow" unique_id=1132312259]
 custom_minimum_size = Vector2(72, 0)
 layout_mode = 2
 text = "Icons"
 vertical_alignment = 1
 
-[node name="MinusButton" type="Button" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows/IconRow"]
+[node name="MinusButton" type="Button" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows/IconRow" unique_id=1972540618]
 custom_minimum_size = Vector2(34, 30)
 layout_mode = 2
 text = "-"
 
-[node name="CountLabel" type="Label" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows/IconRow"]
+[node name="CountLabel" type="Label" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows/IconRow" unique_id=259783869]
 custom_minimum_size = Vector2(34, 0)
 layout_mode = 2
+text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
-text = "1"
 
-[node name="PlusButton" type="Button" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows/IconRow"]
+[node name="PlusButton" type="Button" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows/IconRow" unique_id=68729593]
 custom_minimum_size = Vector2(34, 30)
 layout_mode = 2
 text = "+"
 
-[node name="D20Row" type="HBoxContainer" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows"]
+[node name="D20Row" type="HBoxContainer" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows" unique_id=511411719]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="NameLabel" type="Label" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows/D20Row"]
+[node name="NameLabel" type="Label" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows/D20Row" unique_id=2013836235]
 custom_minimum_size = Vector2(72, 0)
 layout_mode = 2
 text = "D20"
 vertical_alignment = 1
 
-[node name="MinusButton" type="Button" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows/D20Row"]
+[node name="MinusButton" type="Button" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows/D20Row" unique_id=1511216382]
 custom_minimum_size = Vector2(34, 30)
 layout_mode = 2
 text = "-"
 
-[node name="CountLabel" type="Label" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows/D20Row"]
+[node name="CountLabel" type="Label" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows/D20Row" unique_id=182161559]
 custom_minimum_size = Vector2(34, 0)
 layout_mode = 2
+text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
-text = "1"
 
-[node name="PlusButton" type="Button" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows/D20Row"]
+[node name="PlusButton" type="Button" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/DiceTypeRows/D20Row" unique_id=1752532166]
 custom_minimum_size = Vector2(34, 30)
 layout_mode = 2
 text = "+"
 
-[node name="GravityRow" type="HBoxContainer" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer"]
+[node name="GravityRow" type="HBoxContainer" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer" unique_id=2222212]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="GravityButton" type="Button" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/GravityRow"]
+[node name="GravityButton" type="Button" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/GravityRow" unique_id=1534346719]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Gravity: Down"
 
-[node name="GravityStrengthRow" type="HBoxContainer" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer"]
+[node name="GravityStrengthRow" type="HBoxContainer" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer" unique_id=791158689]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="GravityStrengthTitle" type="Label" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/GravityStrengthRow"]
+[node name="GravityStrengthTitle" type="Label" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/GravityStrengthRow" unique_id=626628997]
 custom_minimum_size = Vector2(112, 0)
 layout_mode = 2
 text = "Gravity Strength"
 vertical_alignment = 1
 
-[node name="GravityStrengthSlider" type="HSlider" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/GravityStrengthRow"]
+[node name="GravityStrengthSlider" type="HSlider" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/GravityStrengthRow" unique_id=2086661401]
 layout_mode = 2
 size_flags_horizontal = 3
 min_value = 2.0
@@ -235,24 +236,24 @@ max_value = 20.0
 step = 0.5
 value = 11.5
 
-[node name="GravityStrengthLabel" type="Label" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/GravityStrengthRow"]
+[node name="GravityStrengthLabel" type="Label" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/GravityStrengthRow" unique_id=632494273]
 custom_minimum_size = Vector2(42, 0)
 layout_mode = 2
 text = "11.5"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="RollStrengthRow" type="HBoxContainer" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer"]
+[node name="RollStrengthRow" type="HBoxContainer" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer" unique_id=989203384]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="RollStrengthTitle" type="Label" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/RollStrengthRow"]
+[node name="RollStrengthTitle" type="Label" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/RollStrengthRow" unique_id=114365469]
 custom_minimum_size = Vector2(112, 0)
 layout_mode = 2
 text = "Roll Strength"
 vertical_alignment = 1
 
-[node name="RollStrengthSlider" type="HSlider" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/RollStrengthRow"]
+[node name="RollStrengthSlider" type="HSlider" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/RollStrengthRow" unique_id=1120430058]
 layout_mode = 2
 size_flags_horizontal = 3
 min_value = 0.5
@@ -260,21 +261,21 @@ max_value = 2.0
 step = 0.1
 value = 1.0
 
-[node name="RollStrengthLabel" type="Label" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/RollStrengthRow"]
+[node name="RollStrengthLabel" type="Label" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer/RollStrengthRow" unique_id=336410092]
 custom_minimum_size = Vector2(42, 0)
 layout_mode = 2
 text = "1.0x"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="RollButton" type="Button" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer"]
+[node name="RollButton" type="Button" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer" unique_id=2050428430]
 layout_mode = 2
 text = "Roll Dice"
 
-[node name="StatusLabel" type="Label" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer"]
+[node name="StatusLabel" type="Label" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer" unique_id=63866720]
 layout_mode = 2
 text = "Ready"
 
-[node name="ResultLabel" type="Label" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer"]
+[node name="ResultLabel" type="Label" parent="CanvasLayer/AppRoot/Controls/MarginContainer/VBoxContainer" unique_id=855189425]
 layout_mode = 2
 autowrap_mode = 2
